@@ -19,9 +19,10 @@ export const guessWord = (guessedWord) => {
 }
 
 export const getSecretWord = () => async (dispatch) => {
-    const { data } = await Axios.get('http://localhost:3030')
+    // const { data } = await Axios.get('http://localhost:3030')
     dispatch({
         type: SET_SECRET_WORD,
-        payload: data,
+        // payload: data,
+        payload: 'party',
     })
 }

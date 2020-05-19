@@ -4,14 +4,14 @@ import PropTypes from 'prop-types'
 export default class Congrates extends Component {
     render() {
         return (
-            <div
-                data-test="component-congrates"
-                className="notification is-primary"
-            >
+            <div data-test="component-congrates">
                 {this.props.success && (
-                    <span data-test="congrates-message">
+                    <div
+                        data-test="congrates-message"
+                        className="notification is-primary"
+                    >
                         Congradulation! You guessed the word
-                    </span>
+                    </div>
                 )}
             </div>
         )

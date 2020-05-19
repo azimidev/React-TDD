@@ -54,5 +54,7 @@ test('should check `getSecretWord` on app if it is running', () => {
 
     const getSecretWordCallCount = getSecretWordMock.mock.calls.length
 
-    expect(getSecretWordCallCount).toBe(2)
+    // this will return 2 if you dont have
+    // disableLifecycleMethods in Enzyme Adapter
+    expect(getSecretWordCallCount).toBe(1)
 })
