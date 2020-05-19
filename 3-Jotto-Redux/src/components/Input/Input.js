@@ -5,7 +5,7 @@ import { guessWord } from '../../actions'
 export class UnconnectedInput extends Component {
     constructor(props) {
         super(props)
-        this.state = { currentGuess: null }
+        this.state = { currentGuess: '' }
     }
 
     submitGuessedWord = (e) => {
@@ -15,6 +15,8 @@ export class UnconnectedInput extends Component {
         if (guessedWord && guessedWord.length > 0) {
             this.props.guessWord(guessedWord)
         }
+
+        this.setState({ currentGuess: '' })
     }
 
     render() {
