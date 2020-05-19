@@ -3,6 +3,20 @@ import { connect } from 'react-redux'
 import { guessWord } from '../../actions'
 
 export class UnconnectedInput extends Component {
+    constructor(props) {
+        super(props)
+        this.state = { currentGuess: null }
+    }
+
+    submitGuessedWord = (e) => {
+        e.preventDefault()
+        const guessedWord = this.state.currentGuess
+
+        if (guessedWord && guessedWord.length > 0) {
+            this.props.guessWord(guessedWord)
+        }
+    }
+
     render() {
         const contents =
             this.props.success || this.props.gaveUp ? null : (
@@ -13,12 +27,16 @@ export class UnconnectedInput extends Component {
                         id="word-guess"
                         type="text"
                         placeholder="enter guess"
+                        value={this.state.currentGuess}
+                        onChange={(e) =>
+                            this.setState({ currentGuess: e.target.value })
+                        }
                     />
                     <button
                         data-test="submit-button"
                         className="button is-primary"
                         type="submit"
-                        onClick={() => this.props.guessWord('train')}
+                        onClick={(e) => this.submitGuessedWord(e)}
                     >
                         Submit
                     </button>
