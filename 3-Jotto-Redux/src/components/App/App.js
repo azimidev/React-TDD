@@ -3,7 +3,7 @@ import Congrates from '../Congrats/Congrates'
 import GuessedWords from '../GuessedWords/GuessedWords'
 import { connect } from 'react-redux'
 import { getSecretWord } from '../../actions'
-import { Input } from '../Input/Input'
+import Input from '../Input/Input'
 
 export class UnconnectedApp extends Component {
     componentDidMount() {
