@@ -14,6 +14,8 @@ function Input(props) {
           className="input"
           type="text"
           placeholder="enter guess"
+          value={currentGuess}
+          onChange={(e) => setCurrentGuess(e.target.value)}
         />
         <button
           data-test="submit-button"
