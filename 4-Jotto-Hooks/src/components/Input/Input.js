@@ -8,7 +8,7 @@ function Input(props) {
 
   return (
     <div data-test="component-input">
-      <from>
+      <form>
         <input
           data-test="input-box"
           className="input"
@@ -30,7 +30,7 @@ function Input(props) {
         >
           Submit
         </button>
-      </from>
+      </form>
     </div>
   )
 }

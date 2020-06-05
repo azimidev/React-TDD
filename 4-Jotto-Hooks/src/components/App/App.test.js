@@ -6,9 +6,13 @@ import hookActions from '../../actions/hookActions'
 
 const mockGetSecretWord = jest.fn()
 
-const setup = () => {
+const setup = (secretWord = 'party') => {
   mockGetSecretWord.mockClear()
   hookActions.getSecretWord = mockGetSecretWord
+
+  const mockUserReducer = jest.fn().mockReturnValue([{ secretWord }, jest.fn()])
+
+  React.useReducer = mockUserReducer
 
   // NOTE: `useEffect` works on `mount` and not `shallow`
   // SEE: https://github.com/enzymejs/enzyme/issues/2086
@@ -36,5 +40,41 @@ describe('App components', () => {
     wrapper.setProps()
 
     expect(mockGetSecretWord).not.toHaveBeenCalled()
+  })
+})
+
+describe('App component - secretWord IS NOT null', () => {
+  let wrapper
+
+  beforeEach(() => {
+    wrapper = setup('party')
+  })
+
+  test('should render app when secretWord is not null', () => {
+    const appComponent = findByTestAttr(wrapper, 'component-app')
+    expect(appComponent.exists()).toBe(true)
+  })
+
+  test('should not render spinner when secretWord is not null', () => {
+    const spinnerComponent = findByTestAttr(wrapper, 'spinner')
+    expect(spinnerComponent.exists()).toBe(false)
+  })
+})
+
+describe('App component - secretWord IS null', () => {
+  let wrapper
+
+  beforeEach(() => {
+    wrapper = setup(null)
+  })
+
+  test('should render app when secretWord is not null', () => {
+    const appComponent = findByTestAttr(wrapper, 'component-app')
+    expect(appComponent.exists()).toBe(false)
+  })
+
+  test('should not render spinner when secretWord is not null', () => {
+    const spinnerComponent = findByTestAttr(wrapper, 'spinner')
+    expect(spinnerComponent.exists()).toBe(true)
   })
 })
