@@ -1,12 +1,18 @@
 import React from 'react'
 import App from './App'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import { findByTestAttr } from '../../test/testUtils'
+import hookActions from '../../actions/hookActions'
 
-const setup = (props = {}, state = null) => {
-  const wrapper = shallow(<App {...props} />)
-  if (state) wrapper.setState(state)
-  return wrapper
+const mockGetSecretWord = jest.fn()
+
+const setup = () => {
+  mockGetSecretWord.mockClear()
+  hookActions.getSecretWord = mockGetSecretWord
+
+  // NOTE: `useEffect` works on `mount` and not `shallow`
+  // SEE: https://github.com/enzymejs/enzyme/issues/2086
+  return mount(<App />)
 }
 
 describe('App components', () => {
@@ -14,5 +20,10 @@ describe('App components', () => {
     const wrapper = setup()
     const component = findByTestAttr(wrapper, 'component-app')
     expect(component.length).toBe(1)
+  })
+
+  test('should getSecretWord gwt called on App mount', () => {
+    setup()
+    expect(mockGetSecretWord).toHaveBeenCalledWith()
   })
 })
