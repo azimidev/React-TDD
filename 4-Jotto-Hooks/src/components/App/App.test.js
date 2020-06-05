@@ -26,4 +26,15 @@ describe('App components', () => {
     setup()
     expect(mockGetSecretWord).toHaveBeenCalled()
   })
+
+  test('should not update the secretWord on App update', () => {
+    const wrapper = setup()
+    mockGetSecretWord.mockClear()
+
+    // NOTE: wrapper.update() doesn not trigger update
+    // SEE: https://github.com/enzymejs/enzyme/issues/2091
+    wrapper.setProps()
+
+    expect(mockGetSecretWord).not.toHaveBeenCalled()
+  })
 })
