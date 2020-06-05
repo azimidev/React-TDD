@@ -21,11 +21,11 @@ describe('Input component and props', () => {
 
 describe('Input component hooks', () => {
   let wrapper
-  let mockSetCurrentGuess = jest.fn() // --> function mock
+  let mockSetCurrentGuess = jest.fn() // -> function mock
 
   beforeEach(() => {
-    mockSetCurrentGuess.mockClear() // --> resets mock
-    React.useState = jest.fn(() => ['', mockSetCurrentGuess]) // --> useState mock
+    mockSetCurrentGuess.mockClear() // -> resets mock
+    React.useState = jest.fn(() => ['', mockSetCurrentGuess]) // -> useState mock
     wrapper = setup()
   })
 
@@ -33,16 +33,16 @@ describe('Input component hooks', () => {
     const inputBox = findByTestAttr(wrapper, 'input-box')
     const mockEvent = {
       target: { value: 'train' },
-    } // --> event mock
+    } // -> event mock
     inputBox.simulate('change', mockEvent)
     expect(mockSetCurrentGuess).toHaveBeenCalledWith('train')
   })
 
   test('should clear the field upon submit button click', () => {
     const submitButton = findByTestAttr(wrapper, 'submit-button')
-    submitButton.simulate('click')
+    submitButton.simulate('click', { preventDefault() {} })
     expect(mockSetCurrentGuess).toHaveBeenCalledWith('')
   })
 
-  test.todo('add should be associative')
+  test.todo('TODO A TEST LATER')
 })

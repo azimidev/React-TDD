@@ -22,6 +22,7 @@ function Input(props) {
           className="button is-primary"
           type="submit"
           onClick={(e) => {
+            e.preventDefault()
             // todo: update guessedWord
             // todo: check against secretWord and update success if needed
             setCurrentGuess('')
