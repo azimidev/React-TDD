@@ -22,8 +22,8 @@ describe('App components', () => {
     expect(component.length).toBe(1)
   })
 
-  test('should getSecretWord gwt called on App mount', () => {
+  test('should getSecretWord get called on App mount', () => {
     setup()
-    expect(mockGetSecretWord).toHaveBeenCalledWith()
+    expect(mockGetSecretWord).toHaveBeenCalled()
   })
 })
