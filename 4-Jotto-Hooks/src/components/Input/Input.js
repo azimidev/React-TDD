@@ -21,7 +21,11 @@ function Input(props) {
           data-test="submit-button"
           className="button is-primary"
           type="submit"
-          onClick={(e) => e.preventDefault()}
+          onClick={(e) => {
+            // todo: update guessedWord
+            // todo: check against secretWord and update success if needed
+            setCurrentGuess('')
+          }}
         >
           Submit
         </button>
